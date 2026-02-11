@@ -78,9 +78,9 @@ export default function MatchDetailPage() {
     isConnected 
   } = useWebSocket();
 
-  // ============================================
+
   // 1. FETCH MATCH DATA (REST API + SessionStorage)
-  // ============================================
+
   useEffect(() => {
     if (hasAttemptedFetch) return;
     
@@ -162,9 +162,9 @@ export default function MatchDetailPage() {
     loadMatchData();
   }, [id, hasAttemptedFetch]);
 
-  // ============================================
+  
   // 2. REAL-TIME WEBSOCKET SUBSCRIPTIONS
-  // ============================================
+  
   useEffect(() => {
     if (!match?.id) return;
 
@@ -211,7 +211,7 @@ export default function MatchDetailPage() {
           events: [{
             id: `${Date.now()}_${Math.random()}`,
             ...data
-          }, ...prev.events] // Add new events at the top
+          }, ...prev.events] 
         } : null);
       }
     });
@@ -239,8 +239,8 @@ export default function MatchDetailPage() {
       }
     });
 
-    // 7. Listen for CHAT MESSAGES (these are handled in MatchChat component)
-    //    But we need to keep connection alive
+    // 7. Listening for CHAT MESSAGES are handled in MatchChat component
+    
 
     // 8. Cleanup on unmount
     return () => {
@@ -254,9 +254,9 @@ export default function MatchDetailPage() {
     };
   }, [match?.id, subscribeToMatch, unsubscribeFromMatch, joinChat, leaveChat, onEvent]);
 
-  // ============================================
+  
   // 3. RECONNECTION HANDLER
-  // ============================================
+  
   useEffect(() => {
     if (isConnected && match?.id && !usingMockData) {
       // Re-subscribe when connection is restored
