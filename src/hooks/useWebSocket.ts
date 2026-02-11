@@ -1,7 +1,9 @@
 // hooks/useWebSocket.ts
 // src/hooks/useWebSocket.ts
+// src/hooks/useWebSocket.ts
 import { useEffect, useCallback, useState } from 'react';
 import { socketService } from '@/lib/socket';
+import { SocketEventMap } from '@/lib/types';
 
 export function useWebSocket() {
   const [isConnected, setIsConnected] = useState(false);
@@ -14,17 +16,13 @@ export function useWebSocket() {
       setIsConnected(connected);
     };
 
-    // Connect to WebSocket
     socketService.connect();
     socketService.onConnectionChange(handleConnectionChange);
-
-    // Check initial connection status
     setIsConnected(socketService.isConnected());
 
     return () => {
       console.log('🧹 useWebSocket: Cleaning up...');
       socketService.offConnectionChange(handleConnectionChange);
-      // Don't disconnect here - we want to keep connection for other components
     };
   }, []);
 
@@ -81,7 +79,6 @@ export function useWebSocket() {
     onEvent,
   };
 }
-
 
 
 
