@@ -207,7 +207,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-semibold text-slate-900 dark:text-white">Alex Morgan</p>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-white">Mike Kola</p>
                   <p className="text-xs text-slate-500 dark:text-slate-400">Premium Member</p>
                 </div>
               </div>
