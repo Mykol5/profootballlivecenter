@@ -1,21 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MatchDetail } from '@/lib/types';
+import type { MatchDetail } from '@/lib/types';
 import MatchEvents from './MatchEvents';
 import MatchStats from './MatchStats';
 import MatchChat from './MatchChat';
 import { useWebSocket } from '@/hooks/useWebSocket';
-import { 
-  FaArrowLeft, 
-  FaFutbol, 
-  FaChartPie, 
+import {
+  FaArrowLeft,
+  FaFutbol,
+  FaChartPie,
   FaComments,
   FaClock,
   FaCircle,
-  FaWifi,
-  FaWifiSlash
+  FaWifi
 } from 'react-icons/fa';
+import { TbWifiOff } from 'react-icons/tb';
 import { IoMdFootball } from 'react-icons/io';
 import { GiSoccerBall, GiWhistle } from 'react-icons/gi';
 
@@ -135,7 +135,7 @@ export default function MatchDetail({ match: initialMatch, onBack, isConnected =
       case 'NOT_STARTED':
         return 'Not Started';
       default:
-        return match.status.replace('_', ' ');
+        return (match.status as string).replace('_', ' ');
     }
   };
 
@@ -191,7 +191,7 @@ export default function MatchDetail({ match: initialMatch, onBack, isConnected =
                     </>
                   ) : (
                     <>
-                      <FaWifiSlash className="text-slate-400" />
+                      <TbWifiOff className="text-slate-400" />
                       <span className="text-xs font-medium text-slate-500 dark:text-slate-500 hidden sm:inline">Reconnecting...</span>
                     </>
                   )}
